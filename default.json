@@ -1,0 +1,29 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["before 6am"],
+  "minimumReleaseAge": "3 days",
+  "packageRules": [
+    {
+      "description": "Minor/Patch gebündelt als ein PR (Review durch dich, da nicht überall CI existiert)",
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "minor-patch"
+    },
+    {
+      "description": "Node-Basisimages (auch gepinnte Tags): Patch/Minor sofort und automatisch",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["node"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "groupName": null,
+      "minimumReleaseAge": null,
+      "automerge": true,
+      "schedule": ["at any time"]
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "minimumReleaseAge": null,
+    "automerge": true,
+    "schedule": ["at any time"]
+  }
+}
